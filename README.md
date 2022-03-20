@@ -60,9 +60,9 @@
 ---
 
 ## 수행도구
--프로젝트 기획 : 구글 독스, 줌
--WBS(간트) : Asana 사용
--데이터 파이프라인 구축 : Python, PySpark, Hadoop, AWS, MongoDB, RDBMS(MySQL, Oracle 중에서 고를 거야), Django
+- 프로젝트 기획 : 구글 독스, 줌
+- WBS(간트) : Asana 사용
+- 데이터 파이프라인 구축 : Python, PySpark, Hadoop, AWS, MongoDB, RDBMS(MySQL, Oracle 중에서 고를 거야), Django
 
 ---
 ## 역할분담
