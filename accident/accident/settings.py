@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'accident.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'mysql',
+        'NAME' : 'stone',
         'USER' : 'root',
-        'PASSWORD' : '0000',
-        'HOST' : 'localhost',
+        'PASSWORD' : '1234',
+        'HOST' : 'localhost', # 192.168.219.103 로 바꿔서 해주세용
         # ip주소 변경? 같은 db사용
         'PORT' : '3306'
     }
