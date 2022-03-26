@@ -20,4 +20,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name='index'),
+    path('graph',views.graph_infra),
+    path('infra_data/',views.infra_data),
 ]
