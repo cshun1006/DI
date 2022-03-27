@@ -8,6 +8,18 @@
 from django.db import models
 
 
+class Dongjun(models.Model):
+    name = models.CharField(max_length=20)
+    occupation = models.CharField(max_length=20, blank=True, null=True)
+    height = models.SmallIntegerField(blank=True, null=True)
+    profile = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dongjun'
+
+
 class InfCarAcc(models.Model):
     id = models.IntegerField(primary_key=True)
     cg = models.TextField(db_column='CG', blank=True, null=True)  # Field name made lowercase.
