@@ -11,9 +11,9 @@
 : 각자 이름 옆에 [branch](https://backlog.com/git-tutorial/kr/stepup/stepup2_2.html) 만들고 이름 작성해주세요.
 
 * 전동준: `dongjun`
-* 박지영:
-* 이재원:
-* 조성헌:
+* 박지영: `zziyyung`
+* 이재원: `jaewon`
+* 조성헌: `seongheon`
 
 ---
 ## 데이터 파이프라인 구축 과정
