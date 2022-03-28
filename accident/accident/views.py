@@ -123,3 +123,76 @@ def all_infra(request):
     tmp['CG'] = lst
     print(tmp)
     return JsonResponse(tmp)
+
+def graph_sago(request):
+    seoul_sago = InfCarAcc.objects.all()
+    return render(request,'seoul_sago.html')
+
+def sago_data(request):
+    sago_type = request.GET['seoul_sago']
+    print(sago_type)
+    sago_death_17 ,sago_death_18 ,sago_death_19, sago_death_20 = 0,0,0,0
+    sago_hurt_17 ,sago_hurt_18 , sago_hurt_19 , sago_hurt_20 =0,0,0,0
+
+
+    if sago_type == 'CtoC':
+        '''
+        select CG ,CtoC , year_code
+        from InfCarAcc;
+        '''
+        # models에 있는 class 변수로 맞춰주기 ( mysql X)
+        sago_CtoC = InfCarAcc.objects.values('cg', 'ctoc', 'year_code')
+        print(sago_CtoC)
+        '''
+        select CtoC -> 계속 변해 
+        from 
+        where CG = '사망자수' -> 부상자수
+        and year_code = '17'; -> 연도
+        '''
+        sago_death_17 = sago_CtoC.filter(cg='사망자수',year_code='17')[0]['ctoc']
+        print(sago_death_17)
+        sago_death_18 = sago_CtoC.filter(cg='사망자수',year_code='18')[0]['ctoc']
+        sago_death_19 = sago_CtoC.filter(cg='사망자수',year_code='19')[0]['ctoc']
+        sago_death_20 = sago_CtoC.filter(cg='사망자수', year_code='20')[0]['ctoc']
+
+        sago_hurt_17 = sago_CtoC.filter(cg='부상자수',year_code='17')[0]['ctoc']
+        print(sago_hurt_17)
+        sago_hurt_18 = sago_CtoC.filter(cg='부상자수', year_code='18')[0]['ctoc']
+        sago_hurt_19 = sago_CtoC.filter(cg='부상자수', year_code='19')[0]['ctoc']
+        sago_hurt_20 = sago_CtoC.filter(cg='부상자수', year_code='20')[0]['ctoc']
+
+    elif sago_type == 'CtoP':
+        sago_CtoP = InfCarAcc.objects.values('cg','ctop','year_code')
+
+        sago_death_17 = sago_CtoP.filter(cg='사망자수',year_code='17')[0]['ctop']
+        sago_death_18 = sago_CtoP.filter(cg='사망자수',year_code='18')[0]['ctop']
+        sago_death_19 = sago_CtoP.filter(cg='사망자수',year_code='19')[0]['ctop']
+        sago_death_20 = sago_CtoP.filter(cg='사망자수', year_code='20')[0]['ctop']
+
+        sago_hurt_17 = sago_CtoP.filter(cg='부상자수',year_code='17')[0]['ctop']
+        sago_hurt_18 = sago_CtoP.filter(cg='부상자수', year_code='18')[0]['ctop']
+        sago_hurt_19 = sago_CtoP.filter(cg='부상자수', year_code='19')[0]['ctop']
+        sago_hurt_20 = sago_CtoP.filter(cg='부상자수', year_code='20')[0]['ctop']
+
+
+    elif sago_type == 'CAlone':
+        sago_CAlone = InfCarAcc.objects.values('cg','calone','year_code')
+
+        sago_death_17 = sago_CAlone.filter(cg='사망자수',year_code='17')[0]['calone']
+        sago_death_18 = sago_CAlone.filter(cg='사망자수',year_code='18')[0]['calone']
+        sago_death_19 = sago_CAlone.filter(cg='사망자수',year_code='19')[0]['calone']
+        sago_death_20 = sago_CAlone.filter(cg='사망자수', year_code='20')[0]['calone']
+
+        sago_hurt_17 = sago_CAlone.filter(cg='부상자수',year_code='17')[0]['calone']
+        sago_hurt_18 = sago_CAlone.filter(cg='부상자수', year_code='18')[0]['calone']
+        sago_hurt_19 = sago_CAlone.filter(cg='부상자수', year_code='19')[0]['calone']
+        sago_hurt_20 = sago_CAlone.filter(cg='부상자수', year_code='20')[0]['calone']
+
+        print(sago_type)
+
+
+    # 위치 설정 : UnboundLocalError: local variable 'json_dic' referenced before assignment -> elif 안에서 선언해서 오류남
+    json_dic = {'death_17':sago_death_17,'death_18':sago_death_18,'death_19':sago_death_19,'death_20':sago_death_20,
+                'hurt_17': sago_hurt_17,'hurt_18':sago_hurt_18,'hurt_19':sago_hurt_19,'hurt_20':sago_hurt_20}
+    print(json_dic)
+    return JsonResponse(json_dic)

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<!-- chart.js 로드 -->
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
+<script>
+  $(function(){
+    $('#seoulacc').change(function(){
+      seoul_sago = $('#seoulacc option:selected').val()
+      $.ajax({
+        url : 'sago_data/',
+        data : {'seoul_sago':seoul_sago},
+        dataType: 'json',
+        success: function(msg){
+          $('#containerss').html("<canvas id='mymultiChart' width='400' height='400'></canvas>")
+          // chart create
+          var chartArea = document.getElementById('mymultiChart').getContext('2d');
+          var mymyltiChart = new Chart(chartArea, {
+            type: 'bar',        
+            data: {                
+                labels: ['2017', '2018', '2019', '2020', ],                
+                datasets: [
+                  {                    
+                    label: '사망자수',   // 사망자수                
+                    data: [msg['death_17'],msg['death_18'],msg['death_19'],['death_20']],
+
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',                    
+                    borderColor: 'rgba(255, 99, 132, 1)',                    
+                    borderWidth: 1
+                  },
+                  {
+                    label: '부상자수',   // 부상자수 # of Votes?       
+                    data: [msg['hurt_17'],msg['hurt_18'],msg['hurt_19'],msg['hurt_20']],
+                    backgroundColor: 'rgba(255, 50, 152, 0.2)',                    
+                    borderColor: 'rgba(255, 50, 152, 1)',                    
+                    borderWidth: 1
+                  }
+
+              ]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Chart.js Bar Chart'
+                }
+              }
+            }
+          });
+        }
+      })
+    })
+  })
+</script>
+
+
+<body>
+
+  <!-- 사상자 연도별 추이 -->
+  <h4> 서울시 사상자 연도별 추이 (2017-2020)</h4>
+
+  <div>
+    <select name="type" id="seoulacc">
+      <option value="none">선택</option>
+      <option value="CtoC">차대차</option>
+      <option value="CtoP">차대사람</option>
+      <option value="CAlone">차량단독</option>
+    </select>
+  </div>
+  <br>
+  <!-- 차트가 각각 연결 -->
+  <div id="containerss"></div>
+</body>
+</html>
