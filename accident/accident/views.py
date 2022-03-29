@@ -142,7 +142,8 @@ def sago_data(request):
         '''
         # models에 있는 class 변수로 맞춰주기 ( mysql X)
         sago_CtoC = InfCarAcc.objects.values('cg', 'ctoc', 'year_code')
-        print(sago_CtoC)
+
+        print(type(sago_CtoC))
         '''
         select CtoC -> 계속 변해 
         from 
@@ -196,3 +197,59 @@ def sago_data(request):
                 'hurt_17': sago_hurt_17,'hurt_18':sago_hurt_18,'hurt_19':sago_hurt_19,'hurt_20':sago_hurt_20}
     print(json_dic)
     return JsonResponse(json_dic)
+
+
+def population_graph(request):
+    population = InfPopulation.objects.all()
+    return render(request,'page2.html')
+
+
+def infPopulation_data(request):
+    select_type = request.GET['population']
+
+    # 지역구별 인프라
+    cross = InfSmartCross.objects.values('id', 'gugun')
+    bump = InfSpeedBump.objects.values('id', 'gugun')
+    carpet = InfYellowcarpet.objects.values('id', 'gugun')
+    zone = InfChildZone.objects.values('id', 'gugun')
+    display = InfEleDisplay.objects.values('id', 'gugun')
+    lamp = InfSmartLamp.objects.values('id', 'gugun')
+    camera = InfUnCamera.objects.values('id', 'gugun')
+
+    gugun_pop = []
+    gugun_list = []
+    population2020 = InfPopulation.objects.filter(year_code=20).values('gugun', 'pop_sum')
+
+    for i in range(1,len(population2020)):
+        gugun_list.append(list(population2020.values('gugun')[i].values()))
+
+    print(gugun_list)
+    print(gugun_list[1])
+    list2 = sum(gugun_list,[])
+    print(list2)
+    print(list2[1])
+
+    print(population2020.filter(gugun=list2[1])[0]['pop_sum'])
+    for j in range(0, len(list2)):
+        cnt = (cross.filter(gugun=list2[j]).count()
+               + bump.filter(gugun=list2[j]).count()
+               + carpet.filter(gugun=list2[j]).count()
+               + zone.filter(gugun=list2[j]).count()
+               + display.filter(gugun=list2[j]).count()
+               + lamp.filter(gugun=list2[j]).count()
+               + camera.filter(gugun=list2[j]).count()
+               )
+        gugun_pop.append(cnt / population2020.filter(gugun=list2[j])[0]['pop_sum'])
+    print(gugun_pop)
+
+    json_dict_gugun = {}
+
+
+    for k in range(0, len(list2)):
+        json_dict_gugun[list2[k]] = gugun_pop[k]
+
+    print(json_dict_gugun)
+    return JsonResponse(json_dict_gugun)
+
+
+

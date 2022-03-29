@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script>
+        $(function(){
+            $('#population').change(function(){
+                alert('뜨냐?')
+                population = $('#population option:selected').val()
+                alert(population)
+                $.ajax({
+                    url:'infPopulation_data/',
+                    data: {'population':population,},
+                    dataType: 'json',
+
+                    success: function(msg){
+                        //$('#container2'i).text(msg['17'])
+                        $('#container2').html("<canvas id='myChart' width='400' height='400'></canvas>")
+                        // 차트를 그럴 영역을 dom요소로 가져온다.
+                        var chartArea = document.getElementById('myChart').getContext('2d');
+                        // 차트를 생성한다.
+                        var myChart = new Chart(chartArea, {
+                            // ①차트의 종류(String)
+                            type: 'bar',
+                            // ②차트의 데이터(Object)
+                            data: {
+                                // ③x축에 들어갈 이름들(Array)
+                                labels: ['종로구','중구','용산구','성동구','광진구','동대문구','중랑구','성북구','강북구','도봉구',
+                                '노원구','은평구','서대문구','마포구','양천구','강서구','구로구','금천구','영등포구','동작구','관악구',
+                                '서초구','강남구','송파구','강동구',],
+                                // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
+                                datasets: [{
+                                    // ⑤dataset의 이름(String)
+                                    label: '서울시 구별 인구수',
+                                    // ⑥dataset값(Array)
+                                    data: [msg['종로구'],msg['중구'],msg['용산구'],msg['성동구'],msg['광진구'],msg['동대문구'],
+                                    msg['중랑구'],msg['성북구'],msg['강북구'],msg['도봉구'],msg['노원구'],msg['은평구'],msg['서대문구'],
+                                    msg['마포구'],msg['양천구'],msg['강서구'],msg['구로구'],msg['금천구'],msg['영등포구'],msg['동작구'],
+                                    msg['관악구'],msg['서초구'],msg['강남구'],msg['송파구'],msg['강동구'],],
+                                    // ⑦dataset의 배경색(rgba값을 String으로 표현)
+                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                    // ⑧dataset의 선 색(rgba값을 String으로 표현)
+                                    borderColor: 'rgba(255, 99, 132, 1)',
+                                    // ⑨dataset의 선 두께(Number)
+                                    borderWidth: 1
+                                }]
+                            },
+                            // ⑩차트의 설정(Object)
+                            options: {
+                                    indexAxis: 'y',
+                                // ⑪축에 관한 설정(Object)
+                                scales: {
+                                    // ⑫y축에 대한 설정(Object) -> horizontal bar 라서 x로 바꿈
+                                    y: {
+                                        // ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+
+    <h1>지역구 인구수당 인프라수</h1>
+    <select name="type" id="population">
+        <option value="none">== 선택 == </option>
+        <option value="on">차트확인하기</option>
+
+
+    </select>
+    <br>
+    <div id="container2"></div>
+    <br>
+</body>
+</html>
