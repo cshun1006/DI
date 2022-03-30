@@ -309,7 +309,6 @@ class InfSmartCross(models.Model):
 class InfSmartLamp(models.Model):
     id = models.IntegerField(primary_key=True)
     gugun = models.TextField(blank=True, null=True)
-    data_date = models.TextField(blank=True, null=True)
     sido = models.TextField(blank=True, null=True)
     year_code = models.IntegerField(blank=True, null=True)
 
@@ -322,8 +321,7 @@ class InfSpeedBump(models.Model):
     id = models.IntegerField(primary_key=True)
     sido = models.TextField(blank=True, null=True)
     gugun = models.TextField(blank=True, null=True)
-    type = models.TextField(blank=True, null=True)
-    year_code = models.IntegerField(blank=True, null=True)
+    year_code = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False
