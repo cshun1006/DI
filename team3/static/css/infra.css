@@ -24,6 +24,14 @@
 
 }
 
+@font-face{
+    font-family: 'GoyangM';
+    src: url('../font/Goyang.ttf');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
 /* G마켓체 */
 @font-face{
     font-family: 'GmarketL';
@@ -91,7 +99,7 @@ main{
     display:inline-block;
     padding:0;
     z-index: 1;
-    margin-top:70px;
+    margin-top:90px;
 }
 main > div{
     display:inline-block;
@@ -110,10 +118,29 @@ main > div{
     height:140%;
     display: inline-block;
     align-items: center;
+    font-family: 'GodoM';
 }
 p{
-    display:inline;
+    /* display:inline; */
 }
+
+.union1{
+    text-align: center;
+}
+.union2{
+    text-align: center;
+}
+.union3{
+    text-align: center;
+}
+.union4{
+    text-align: center;
+}
+
+select{
+    display: inline-block;
+}
+
 
 .center1{
     width:50%;
@@ -128,6 +155,7 @@ p{
     display:block;
     float:left;
 }
+
 
 .right{
     /* border: 1px solid green; */

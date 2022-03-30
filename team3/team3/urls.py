@@ -37,4 +37,5 @@ urlpatterns = [
     # 전국 사고다발지역 파이차트 페이지
     path('infra/keyword/pie/', views.pie),
     path('infra/keyword/pie/sido_pie/',views.sido_pie),
+
 ]

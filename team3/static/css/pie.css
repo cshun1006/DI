@@ -91,7 +91,7 @@ main{
     display:inline-block;
     padding:0;
     z-index: 1;
-    margin-top:70px;
+    margin-top:90px;
 }
 main > div{
     display:inline-block;
@@ -111,7 +111,11 @@ main > div{
     height:100%;
     display: inline-block;
     align-items: center;
+    font-family: 'GodoM';
 }
+
+
+
 .right{
     /* border: 1px solid green; */
     width:5%;

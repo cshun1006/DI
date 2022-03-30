@@ -25,13 +25,11 @@
     <main>
         {% spaceless %}
         <div class="left">
-                
             <a class='larrow' href="/infra/"><span></span></a>
         </div>
         <div class="center">
-               
             <select name="accdtype" id="accd">
-                <option value="none">== 사고유형 == </option>
+                <option value="none">사고유형</option>
                 <option value="Frequentzoneoldman">노인보행자 사고</option>
                 <option value="Frequentzonechild">어린이보행자 사고</option>
                 <option value="Schoolzonechild">스쿨존 사고</option>
@@ -42,11 +40,8 @@
             <div class="chart-area2"></div>
             <div class="chart-area3"></div>
             <div class="chart-area4"></div>
-
-
         </div>
         <div class="right">
-                
             <a class='rarrow' href="pie/"><span></span></a>
         </div>
     
@@ -84,7 +79,7 @@
                         $('.chart-area4').empty();
                     }
                     // for (var i = 0; msg['key'].length; i++){
-                        $('.chart-area1').append("<div id='container1' width='400' height='400'></div>")  
+                        $('.chart-area1').append("<div id='container1' width='300' height='300'></div>")  
                         anychart.onDocumentReady(function () {
                         var key = msg['key'][0]
                         // create data
@@ -98,13 +93,13 @@
                         // create a chart and set the data
                         var chart = anychart.tagCloud(data);
                         // create and configure a color scale.
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
                         // set the color scale as the color scale of the chart
-                        chart.colorScale(customColorScale);
+                        // chart.colorScale(customColorScale);
                         // add and configure a color range
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         // set the chart title
                         chart.title(key);
                         // set the container id
@@ -123,11 +118,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container2");
                         chart.draw();
@@ -143,11 +138,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container3");
                         chart.draw();
@@ -163,11 +158,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container4");
                         chart.draw();
@@ -183,11 +178,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container5");
                         chart.draw();
@@ -203,11 +198,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container6");
                         chart.draw();
@@ -223,11 +218,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container7");
                         chart.draw();
@@ -243,11 +238,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container8");
                         chart.draw();
@@ -264,11 +259,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container9");
                         chart.draw();
@@ -284,11 +279,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container10");
                         chart.draw();
@@ -304,11 +299,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container11");
                         chart.draw();
@@ -324,11 +319,11 @@
                             data.push({ x: name[j], value: num[j] })
                         }
                         var chart = anychart.tagCloud(data);
-                        var customColorScale = anychart.scales.linearColor();
-                        customColorScale.colors(["888888", "ffffff"]);
-                        chart.colorScale(customColorScale);
-                        chart.colorRange().enabled(false);
-                        chart.colorRange().length("90%");
+                        // var customColorScale = anychart.scales.linearColor();
+                        // customColorScale.colors(["888888", "ffffff"]);
+                        // chart.colorScale(customColorScale);
+                        // chart.colorRange().enabled(false);
+                        // chart.colorRange().length("90%");
                         chart.title(key);
                         chart.container("container12");
                         chart.draw();
@@ -376,6 +371,12 @@
 
                     // }
                     
+                    $('.chart-area1 > div').css('height', 300);
+                    $('.chart-area2 > div').css('height', 300);
+                    $('.chart-area3 > div').css('height', 300);
+                    $('.chart-area4 > div').css('height', 300, 'width', 300);
+
+
                 }
 
             })
