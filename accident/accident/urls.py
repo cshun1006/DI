@@ -25,4 +25,8 @@ urlpatterns = [
     path('all_infra/',views.all_infra),
     path('graph_sago',views.graph_sago,name='graph_sago'),
     path('sago_data/',views.sago_data,name='sago_data'),
+    path('population_graph', views.population_graph),
+    path('infPopulation_data/', views.infPopulation_data),
+    path('2_page/',views.two_page),
+    path('2_page/sido_pie/',views.sido_pie),
 ]

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script> 
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+    <style>
+        *{padding:0; margin:0;}
+        html{height: 2000px;}
+    </style>
+<script>
+        $(function(){
+            $('#accd').change(function () {
+                accident = $('#accd option:selected').val()
+                $.ajax({
+                    url: 'keyword_data/',
+                    data: { 'accident': accident },
+                    dataType: 'json',
+                    success: function (msg) {
+                        // 우선 워드클라우드 예제
+                        // alert(msg)
+                        if ($('#container1')){
+                            $('.chart-area1').empty();
+                            $('.chart-area2').empty();
+                            $('.chart-area3').empty();
+                            $('.chart-area4').empty();
+                        }
+                        // for (var i = 0; msg['key'].length; i++){
+                            $('.chart-area1').append("<div id='container1' width='400' height='400'></div>")  
+                            anychart.onDocumentReady(function () {
+                            var key = msg['key'][0]
+                            // create data
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                // {x: a[i], value: b[i]}
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            // create a chart and set the data
+                            var chart = anychart.tagCloud(data);
+                            // create and configure a color scale.
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            // set the color scale as the color scale of the chart
+                            chart.colorScale(customColorScale);
+                            // add and configure a color range
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            // set the chart title
+                            chart.title(key);
+                            // set the container id
+                            chart.container("container1");
+                            // initiate drawing the chart
+                            chart.draw();
+                        });
+
+                        $('.chart-area1').append("<div id='container2' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][1]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container2");
+                            chart.draw();
+                        });
+
+                        $('.chart-area1').append("<div id='container3' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][2]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container3");
+                            chart.draw();
+                        });
+
+                        $('.chart-area1').append("<div id='container4' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][3]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container4");
+                            chart.draw();
+                        });
+                        
+                        $('.chart-area2').append("<div id='container5' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][4]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container5");
+                            chart.draw();
+                        });
+
+                        $('.chart-area2').append("<div id='container6' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][5]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container6");
+                            chart.draw();
+                        });
+
+                        $('.chart-area2').append("<div id='container7' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][6]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container7");
+                            chart.draw();
+                        });
+
+                        $('.chart-area2').append("<div id='container8' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][7]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container8");
+                            chart.draw();
+                        });
+
+
+                        $('.chart-area3').append("<div id='container9' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][8]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container9");
+                            chart.draw();
+                        });
+
+                        $('.chart-area3').append("<div id='container10' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][9]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container10");
+                            chart.draw();
+                        });
+
+                        $('.chart-area3').append("<div id='container11' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][10]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container11");
+                            chart.draw();
+                        });
+
+                        $('.chart-area3').append("<div id='container12' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][11]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            var customColorScale = anychart.scales.linearColor();
+                            customColorScale.colors(["888888", "ffffff"]);
+                            chart.colorScale(customColorScale);
+                            chart.colorRange().enabled(false);
+                            chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container12");
+                            chart.draw();
+                        });
+
+                        $('.chart-area4').append("<div id='container13' width='400' height='400'></div>")
+                        anychart.onDocumentReady(function () {
+                            var key = msg['key'][12]
+                            var data = new Array
+                            var name = msg[key]['cate_name']
+                            var num = msg[key]['cate_num']
+                            for (var j = 0; j < name.length; j++) {
+                                data.push({ x: name[j], value: num[j] })
+                            }
+                            var chart = anychart.tagCloud(data);
+                            // var customColorScale = anychart.scales.linearColor();
+                            // customColorScale.colors(["888888", "ffffff"]);
+                            // chart.colorScale(customColorScale);
+                            // chart.colorRange().enabled(false);
+                            // chart.colorRange().length("90%");
+                            chart.title(key);
+                            chart.container("container13");
+                            chart.draw();
+                        });
+
+
+                        $(function(){
+                            $('.chart-area1 > div').css({
+                                "display": "inline-block",
+                                "position":"relative"
+                            })
+                            $('.chart-area2 > div').css({
+                                "display": "inline-block",
+                                "position":"relative"
+                            })
+                            $('.chart-area3 > div').css({
+                                "display": "inline-block",
+                                "position":"relative"
+                            })
+                            $('.chart-area4 > div').css({
+                                "display": "inline-block",
+                                "position":"relative"
+                            })
+                        })
+
+                        // }
+                        
+                    }
+
+                })
+            })
+        })
+
+
+
+
+</script>
+
+
+</head>
+<body>
+    <div class="up">
+        <select name="accdtype" id="accd">
+            <option value="none">== 사고유형 == </option>
+            <option value="Frequentzoneoldman">노인보행자 사고</option>
+            <option value="Frequentzonechild">어린이보행자 사고</option>
+            <option value="Schoolzonechild">스쿨존 사고</option>
+            <option value="Frequentzonetmzon">연휴기간 사고</option>
+            <option value="Jaywalking">무단횡단 사고</option>
+        </select>
+    </div>
+    <div class="down">
+        <div class="chart-area1">
+            <!-- <div id="container1"></div>
+            <div id="container2"></div>
+            <div id="container3"></div>
+            <div id="container4"></div> -->
+        </div>
+        <div class="chart-area2">
+            <!-- <div id="container5"></div> -->
+            <!-- <div id="container6"></div> -->
+            <!-- <div id="container7"></div> -->
+            <!-- <div id="container8"></div> -->
+        </div>
+        <div class="chart-area3">
+            <!-- <div id="container9"></div> -->
+            <!-- <div id="container10"></div> -->
+            <!-- <div id="container11"></div> -->
+            <!-- <div id="container12"></div> -->
+        </div>
+        <div class="chart-area4">
+            <!-- <div id="container13"></div> -->
+            <!-- <div id="container14"></div> -->
+            <!-- <div id="container15"></div> -->
+            <!-- <div id="container16"></div> -->
+        </div>
+    </div>
+</body>
+</html>
