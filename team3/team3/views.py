@@ -399,3 +399,5 @@ def sido_pie(request):
     # print(tmp_obj['보행어린이']['서울'])
     a = {'a':50000}
     return JsonResponse(tmp_obj)
+
+

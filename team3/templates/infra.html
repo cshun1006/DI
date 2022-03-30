@@ -29,10 +29,10 @@
         <div class="center">
                
             <div class="center1">
-                <div class="union1" style="border:1px solid black;">
+                <div class="union1" style="border:1px solid whitesmoke;">
                     <p>인프라 설치 추이</p>
                     <select name="type" id="accd">
-                        <option value="none">== 선택 == </option>
+                        <option value="none">인프라 선택</option>
                         <option value="InfSmartCross">스마트 횡단보드</option>
                         <option value="InfSmartLamp">스마트 가로등</option>
                         <option value="InfSpeedBump">과속 방지턱</option>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <br>
-                <div class="union2" style="border:1px solid black;">
+                <div class="union2" style="border:1px solid whitesmoke;">
                     <p>연도별 모든 인프라 누적 개수와 사상자 추이</p>
                     <div style="position:relative; width:610; height:50vh;">
                         <canvas id="jsChart" width='605' height='320'></canvas>
@@ -54,10 +54,10 @@
                 </div>
             </div>
             <div class="center2">
-                <div class="union3" style="border:1px solid black;">
-                    <p>차트3</p>
+                <div class="union3" style="border:1px solid whitesmoke;">
+                    <p>연도별 교통사고 사상자 추이</p>
                     <select name="type" id="seoulacc">
-                        <option value="none">선택</option>
+                        <option value="none">사고유형 선택</option>
                         <option value="CtoC">차대차</option>
                         <option value="CtoP">차대사람</option>
                         <option value="CAlone">차량단독</option>
@@ -68,8 +68,8 @@
                     
                 </div>
                 <br>
-                <div class="union4" style="border:1px solid black;">
-                    <p>차트4</p>
+                <div class="union4" style="border:1px solid whitesmoke;">
+                    <p>인구당 인프라 수 추이</p>
                     <div style="position:relative; width:610; height:50vh;">
                         <div id="container2"></div>
                     </div>
@@ -128,9 +128,9 @@
                                 // ⑥dataset값(Array)
                                 data: [msg['17'], msg['18'], msg['19'], msg['20'],],
                                 // ⑦dataset의 배경색(rgba값을 String으로 표현)
-                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                backgroundColor: 'rgba(253, 250, 135, 0.2)',
                                 // ⑧dataset의 선 색(rgba값을 String으로 표현)
-                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderColor: 'rgba(253, 250, 135, 1)',
                                 // ⑨dataset의 선 두께(Number)
                                 borderWidth: 1
                             }]
@@ -173,24 +173,24 @@
                     fill : false,         // 채우기 없음
                     lineTension : 0.2,  // 0이면 꺾은선 그래프, 숫자가 높을수록 둥글해짐
                     pointRadius : 5,    // 각 지점에 포인트 주지 않음 0 ~ n
-                    backgroundColor: 'rgb(255, 153, 0)',
-                    borderColor: 'rgb(255, 153, 0)',
+                    backgroundColor: 'rgba(255, 175, 176, 1)',
+                    borderColor: 'rgba(255, 175, 176, 1)',
                     data: [(msg['CG'][1]+msg['CG'][2])/10,(msg['CG'][4]+msg['CG'][5])/10,(msg['CG'][7]+msg['CG'][8])/10,
                     (msg['CG'][10]+msg['CG'][11])/10]
                 },
                 {
                     label: '과속방지턱',
                     type : 'bar', // 'bar' type, 전체 타입과 같다면 생략가능
-                    backgroundColor: 'rgb(246, 215, 239)',
-                    borderColor: 'rgb(0, 0, 0)',
+                    backgroundColor: 'rgba(242, 207, 165, 0.7)',
+                    borderColor: 'rgba(242, 207, 165, 1)',
                     data: [msg['infra_sp'][0],msg['infra_sp'][1]+msg['infra_sp'][0],msg['infra_sp'][2]+msg['infra_sp'][1]+msg['infra_sp'][0],
                     msg['infra_sp'][3]+msg['infra_sp'][2]+msg['infra_sp'][1]+msg['infra_sp'][0]    ,]
                 },
                 {
                     label: '스마트 횡단보도',
                     type : 'bar', // 'bar' type, 전체 타입과 같다면 생략가능
-                    backgroundColor: 'rgb(230, 130, 208)',
-                    borderColor: 'rgb(255, 204, 102)',
+                    backgroundColor: 'rgba(253, 250, 135, 0.7)',
+                    borderColor: 'rgba(253, 250, 135, 1)',
                     data: [msg['infra_smcro'][0],msg['infra_smcro'][1]+msg['infra_smcro'][0],msg['infra_smcro'][2]+msg['infra_smcro'][1]+msg['infra_smcro'][0],
                     msg['infra_smcro'][3]+msg['infra_smcro'][2]+msg['infra_smcro'][1]+msg['infra_smcro'][0],]
                 }
@@ -198,8 +198,8 @@
                 {
                     label: '스마트 가로등',
                     type : 'bar', // 'bar' type, 전체 타입과 같다면 생략가능
-                    backgroundColor: 'rgb(230, 136,194 )',
-                    borderColor: 'rgb(255, 204, 102)',
+                    backgroundColor: 'rgba(175, 255, 186, 0.7)',
+                    borderColor: 'rgba(175, 255, 186, 1)',
                     data: [msg['infra_smlap'][0],msg['infra_smlap'][1]+msg['infra_smlap'][0],msg['infra_smlap'][2]+msg['infra_smlap'][1]+msg['infra_smlap'][0],
                     msg['infra_smlap'][3]+msg['infra_smlap'][2]+msg['infra_smlap'][1]+msg['infra_smlap'][0]]
                 }
@@ -207,8 +207,8 @@
                 {
                     label: '옐로우카펫',
                     type : 'bar', // 'bar' type, 전체 타입과 같다면 생략가능
-                    backgroundColor: 'rgb(230, 142, 180)',
-                    borderColor: 'rgb(255, 204, 102)',
+                    backgroundColor: 'rgba(174, 228, 255, 0.7)',
+                    borderColor: 'rgba(174, 228, 255, 1)',
                     data: [msg['infra_yel'][0],msg['infra_yel'][1]+msg['infra_yel'][0],msg['infra_yel'][2]+msg['infra_yel'][1]+msg['infra_yel'][0],
                     msg['infra_yel'][3]+msg['infra_yel'][2]+msg['infra_yel'][1]+msg['infra_yel'][0]]
                 }
@@ -216,8 +216,8 @@
                 {
                     label: '무인단속카메라',
                     type : 'bar', // 'bar' type, 전체 타입과 같다면 생략가능
-                    backgroundColor: 'rgb(230, 149, 166)',
-                    borderColor: 'rgb(255, 204, 102)',
+                    backgroundColor: 'rgba(181, 199, 237, 0.7)',
+                    borderColor: 'rgba(181, 199, 237, 1)',
                     data: [msg['infra_cam'][0],msg['infra_cam'][1]+msg['infra_cam'][0],msg['infra_cam'][2]+msg['infra_cam'][1]+msg['infra_cam'][0],
                     msg['infra_cam'][3]+msg['infra_cam'][2]+msg['infra_cam'][1]+msg['infra_cam'][0]]
                 }
@@ -225,8 +225,8 @@
                 {
                     label: '어린이보호구역',
                     type : 'bar', // 'bar' type, 전체 타입과 같다면 생략가능
-                    backgroundColor: 'rgb(230, 155, 152)',
-                    borderColor: 'rgb(230, 155, 152)',
+                    backgroundColor: 'rgba(202, 166, 254, 0.7)',
+                    borderColor: 'rgba(202, 166, 254, 1)',
                     data: [msg['infra_chzone'][0],msg['infra_chzone'][1]+msg['infra_chzone'][0],
                     msg['infra_chzone'][2]+msg['infra_chzone'][1]+msg['infra_chzone'][0],
                     msg['infra_chzone'][3]+msg['infra_chzone'][2]+msg['infra_chzone'][1]+msg['infra_chzone'][0]]
@@ -235,8 +235,8 @@
                 {
                     label: '가변전광판',
                     type : 'bar', // 'bar' type, 전체 타입과 같다면 생략가능
-                    backgroundColor: 'rgb(255, 161, 138)',
-                    borderColor: 'rgb(255, 204, 102)',
+                    backgroundColor: 'rgba(172, 184, 144, 0.7)',
+                    borderColor: 'rgba(172, 184, 144, 1)',
                     data: [msg['infra_ele_display'][0],msg['infra_ele_display'][1]+msg['infra_ele_display'][0],
                     msg['infra_ele_display'][2]+msg['infra_ele_display'][1]+msg['infra_ele_display'][0],
                     msg['infra_ele_display'][3]+msg['infra_ele_display'][2]+msg['infra_ele_display'][1]+msg['infra_ele_display'][0]]
@@ -296,15 +296,15 @@
                     label: '사망자수',   // 사망자수                
                     data: [msg[0],msg[1],msg[2],msg[3]],
 
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',                    
-                    borderColor: 'rgba(255, 99, 132, 1)',                    
+                    backgroundColor: 'rgba(175, 255, 186, 0.2)',                    
+                    borderColor: 'rgba(175, 255, 186, 1)',                    
                     borderWidth: 1
                   },
                   {
                     label: '부상자수',   // 부상자수 # of Votes?       
                     data: [msg[4],msg[5],msg[6],msg[7]],
-                    backgroundColor: 'rgba(255, 50, 152, 0.2)',                    
-                    borderColor: 'rgba(255, 50, 152, 1)',                    
+                    backgroundColor: 'rgba(174, 228, 255, 0.2)',                    
+                    borderColor: 'rgba(174, 228, 255, 1)',                    
                     borderWidth: 1
                   }
 
@@ -360,9 +360,10 @@
                                     msg['마포구'],msg['양천구'],msg['강서구'],msg['구로구'],msg['금천구'],msg['영등포구'],msg['동작구'],
                                     msg['관악구'],msg['서초구'],msg['강남구'],msg['송파구'],msg['강동구'],],
                                     // ⑦dataset의 배경색(rgba값을 String으로 표현)
-                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                    
+                                    backgroundColor: 'rgba(255, 175, 216, 0.2)',
                                     // ⑧dataset의 선 색(rgba값을 String으로 표현)
-                                    borderColor: 'rgba(255, 99, 132, 1)',
+                                    borderColor: 'rgba(255, 175, 216, 1)',
                                     // ⑨dataset의 선 두께(Number)
                                     borderWidth: 1
                                 }]
@@ -376,7 +377,12 @@
                                     // ⑫y축에 대한 설정(Object) -> horizontal bar 라서 x로 바꿈
                                     y: {
                                         // ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
-                                        beginAtZero: true
+                                        beginAtZero: true,
+                                        ticks : {
+                                            font : {
+                                                size: 6
+                                            }
+                                        }
                                     }
                                 }
                             }

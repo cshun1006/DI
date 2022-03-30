@@ -112,6 +112,9 @@ main > div{
     display: inline-block;
     align-items: center;
 }
+#d3{
+    display: inline-block;
+}
 
 .right{
     /* border: 1px solid green; */

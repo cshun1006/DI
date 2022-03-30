@@ -9,9 +9,8 @@
     <title>DI | Home</title>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-    <script src="https://www.koolchart.com/demo/LicenseKey/codepen/KoolChartLicense.js"></script>
-    <script src="https://www.koolchart.com/demo/KoolChart/JS/KoolChart.js"></script>
-    <link rel="stylesheet" href="https://www.koolchart.com/demo/KoolChart/Assets/Css/KoolChart.css"/>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
 </head>
 <body>
     <header>
@@ -28,7 +27,7 @@
             <!-- <a class='larrow' href="#"><span></span></a> -->
         </div>
         <div class="center">
-            <div id="chartHolder" style="height:70vh; width:90vw;"></div>
+            <div id="d3"></div>
         </div>
         <div class="right">
              
@@ -56,71 +55,70 @@
 
     
 </body>
-    <script>
-        var chartVars = "KoolOnLoadCallFunction=chartReadyHandler";
+<script>
+    var width = 1200,
+        height = 500
 
-        KoolChart.create("chart1", "chartHolder", chartVars, "100%", "100%");
+    var svg = d3.select("#d3").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+    d3.csv("{% static '/worddata.csv' %}", function (data) {
+        showCloud(data)
+        setInterval(function(){
+             showCloud(data)
+        },2000) 
+    });
+    //scale.linear: 선형적인 스케일로 표준화를 시킨다. 
+    //domain: 데이터의 범위, 입력 크기
+    //range: 표시할 범위, 출력 크기 
+    //clamp: domain의 범위를 넘어간 값에 대하여 domain의 최대값으로 고정시킨다.
+    wordScale = d3.scale.linear().domain([0, 50]).range([0, 50]).clamp(true);
+    var keywords = ["전동준", "이재원", "조성헌", "박지영"]
+    var svg = d3.select("svg")
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
-        function chartReadyHandler(id) {
-        document.getElementById(id).setLayout(layoutStr);
-        document.getElementById(id).setData(makeData());
-        setTimeout(changeData, 3000);
+    function showCloud(data) {
+        d3.layout.cloud().size([width, height])
+            //클라우드 레이아웃에 데이터 전달
+            .words(data)
+            .rotate(function (d) {
+                return d.text.length > 3 ? 0 : 90;
+            })
+            //스케일로 각 단어의 크기를 설정
+            .fontSize(function (d) {
+                return wordScale(d.frequency);
+            })
+            //클라우드 레이아웃을 초기화 > end이벤트 발생 > 연결된 함수 작동  
+            .on("end", draw)
+            .start();
+
+        function draw(words) { 
+            var cloud = svg.selectAll("text").data(words)
+            //Entering words
+            cloud.enter()
+                .append("text")
+                .style("font-family", "Goyang")
+                .style("fill", function (d) {
+                    return (keywords.indexOf(d.text) > -1 ? "#fbc280" : "#405275");
+                })
+                .style("fill-opacity", .5)
+                .attr("text-anchor", "middle") 
+                .attr('font-size', 1)
+                .text(function (d) {
+                    return d.text;
+                }); 
+            cloud
+                .transition()
+                .duration(600)
+                .style("font-size", function (d) {
+                    return d.size + "px";
+                })
+                .attr("transform", function (d) {
+                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                })
+                .style("fill-opacity", 1); 
         }
-
-        var layoutStr =
-        '<KoolChart backgroundColor="#FFFFFF"  borderStyle="none" fontFamily="Noto Sans">'
-        +'<Options>'
-            // +'<Caption text="Changes data every 2 seconds"/>'
-        +'</Options>'
-        +'<WordCloudChart showDataTips="true">'
-            +'<series>'
-            +'<WordCloudSeries textField="text" weightField="weight">'
-            +'<showDataEffect>'
-            +'<SeriesInterpolate duration="1000"/>'
-            +'</showDataEffect>'
-            +'<fills>'
-            +'<SolidColor color="#5586a4"/>'
-            +'<SolidColor color="#40b2e6"/>'
-            +'<SolidColor color="#ffa123"/>'
-            +'<SolidColor color="#595c7b"/>'
-            +'<SolidColor color="#ef8075"/>'
-            +'<SolidColor color="#f8ba03"/>'
-            +'<SolidColor color="#03b79a"/>'
-            +'<SolidColor color="#a5d4e6"/>'
-            +'<SolidColor color="#b79d7c"/>'
-            +'<SolidColor color="#9e589e"/>'
-            +'</fills>'
-            +'</WordCloudSeries>'
-            +'</series>'
-        +'</WordCloudChart>'
-        +'</KoolChart>';
-
-        function changeData(){
-        document.getElementById("chart1").setData(makeData());
-        setTimeout(changeData, 2000);
-        }
-
-        function makeData(){
-        var i, n,
-        chartData = [],
-        a = ['안녕하세요','3조','DI','전동준','이재원','박지영','조성헌','화이팅','데이터엔지니어링 프로젝트',
-        '이재원','박지영','조성헌','전동준','사고다발지역 주변 시설 분석','사고유형 유추','교통 인프라 재고'];
-
-        for(i = 0, n = a.length ; i < n ; i += 1){
-        chartData.push({
-            text : a[i],
-            weight : Math.floor(Math.random(10) * 100)
-        });
-        }
-        return chartData;
-        };
-        
-        
-
-
-
-
-        
-                        
-    </script>
+    }
+</script>
 </html>
