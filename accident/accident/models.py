@@ -8,139 +8,6 @@
 from django.db import models
 
 
-class Dongjun(models.Model):
-    name = models.CharField(max_length=20)
-    occupation = models.CharField(max_length=20, blank=True, null=True)
-    height = models.SmallIntegerField(blank=True, null=True)
-    profile = models.TextField(blank=True, null=True)
-    date = models.DateTimeField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'dongjun'
-
-
-class InfCarAcc(models.Model):
-    id = models.IntegerField(primary_key=True)
-    cg = models.TextField(db_column='CG', blank=True, null=True)  # Field name made lowercase.
-    sum = models.IntegerField(blank=True, null=True)
-    ctop = models.IntegerField(db_column='CtoP', blank=True, null=True)  # Field name made lowercase.
-    ctoc = models.IntegerField(db_column='CtoC', blank=True, null=True)  # Field name made lowercase.
-    calone = models.IntegerField(db_column='CAlone', blank=True, null=True)  # Field name made lowercase.
-    year_code = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'inf_car_acc'
-
-
-class InfChildZone(models.Model):
-    id = models.IntegerField(primary_key=True)
-    gugun = models.TextField(blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
-    sname = models.TextField(blank=True, null=True)
-    stype = models.TextField(blank=True, null=True)
-    year_code = models.IntegerField(blank=True, null=True)
-    sido = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'inf_child_zone'
-
-
-class InfEleDisplay(models.Model):
-    id = models.IntegerField(primary_key=True)
-    sido = models.TextField(blank=True, null=True)
-    gugun = models.TextField(blank=True, null=True)
-    year_code = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'inf_ele_display'
-
-
-class InfPopulation(models.Model):
-    id = models.IntegerField(primary_key=True)
-    year_code = models.IntegerField(blank=True, null=True)
-    gugun = models.TextField(blank=True, null=True)
-    household = models.IntegerField(blank=True, null=True)
-    pop_sum = models.IntegerField(blank=True, null=True)
-    male = models.IntegerField(blank=True, null=True)
-    female = models.IntegerField(blank=True, null=True)
-    sumkor = models.IntegerField(db_column='sumKor', blank=True, null=True)  # Field name made lowercase.
-    korm = models.IntegerField(db_column='korM', blank=True, null=True)  # Field name made lowercase.
-    korf = models.IntegerField(db_column='korF', blank=True, null=True)  # Field name made lowercase.
-    sumfor = models.IntegerField(db_column='sumFor', blank=True, null=True)  # Field name made lowercase.
-    form = models.IntegerField(db_column='forM', blank=True, null=True)  # Field name made lowercase.
-    forf = models.IntegerField(db_column='forF', blank=True, null=True)  # Field name made lowercase.
-    houseperperson = models.FloatField(db_column='HousePerPerson', blank=True, null=True)  # Field name made lowercase.
-    over65 = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'inf_population'
-
-
-class InfSmartCross(models.Model):
-    id = models.IntegerField(primary_key=True)
-    year_code = models.IntegerField(blank=True, null=True)
-    sido = models.TextField(blank=True, null=True)
-    gugun = models.TextField(blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'inf_smart_cross'
-
-
-class InfSmartLamp(models.Model):
-    id = models.IntegerField(primary_key=True)
-    gugun = models.TextField(blank=True, null=True)
-    data_date = models.TextField(blank=True, null=True)
-    sido = models.TextField(blank=True, null=True)
-    year_code = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'inf_smart_lamp'
-
-
-class InfSpeedBump(models.Model):
-    id = models.IntegerField(primary_key=True)
-    sido = models.TextField(blank=True, null=True)
-    gugun = models.TextField(blank=True, null=True)
-    type = models.TextField(blank=True, null=True)
-    year_code = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'inf_speed_bump'
-
-
-class InfUnCamera(models.Model):
-    id = models.IntegerField(primary_key=True)
-    sido = models.TextField(blank=True, null=True)
-    gugun = models.TextField(blank=True, null=True)
-    gubun = models.IntegerField(blank=True, null=True)
-    type = models.TextField(db_column='Type', blank=True, null=True)  # Field name made lowercase.
-    year_code = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'inf_un_camera'
-
-
-class InfYellowcarpet(models.Model):
-    id = models.IntegerField(primary_key=True)
-    address = models.TextField(blank=True, null=True)
-    year_code = models.IntegerField(blank=True, null=True)
-    sido = models.TextField(blank=True, null=True)
-    gugun = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'inf_yellowcarpet'
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -253,6 +120,303 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+
+class Dongjun(models.Model):
+    name = models.CharField(max_length=20)
+    occupation = models.CharField(max_length=20, blank=True, null=True)
+    height = models.SmallIntegerField(blank=True, null=True)
+    profile = models.TextField(blank=True, null=True)
+    date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dongjun'
+
+
+class FrequentzonechildAccident(models.Model):
+    id = models.IntegerField(primary_key=True)
+    address = models.TextField(blank=True, null=True)
+    occur = models.IntegerField(blank=True, null=True)
+    death_injury = models.IntegerField(blank=True, null=True)
+    death = models.IntegerField(blank=True, null=True)
+    s_injury = models.IntegerField(blank=True, null=True)
+    l_injury = models.IntegerField(blank=True, null=True)
+    lot = models.FloatField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'frequentzonechild_accident'
+
+
+class FrequentzonechildKeywordsearch(models.Model):
+    year = models.IntegerField(blank=True, null=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    keyword = models.TextField(blank=True, null=True)
+    category = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    center = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'frequentzonechild_keywordsearch'
+
+
+class FrequentzonelgAccident(models.Model):
+    id = models.IntegerField(primary_key=True)
+    address = models.TextField(blank=True, null=True)
+    occur = models.IntegerField(blank=True, null=True)
+    death_injury = models.IntegerField(blank=True, null=True)
+    death = models.IntegerField(blank=True, null=True)
+    s_injury = models.IntegerField(blank=True, null=True)
+    l_injury = models.IntegerField(blank=True, null=True)
+    lot = models.FloatField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'frequentzonelg_accident'
+
+
+class FrequentzoneoldmanAccident(models.Model):
+    id = models.IntegerField(primary_key=True)
+    address = models.TextField(blank=True, null=True)
+    occur = models.IntegerField(blank=True, null=True)
+    death_injury = models.IntegerField(blank=True, null=True)
+    death = models.IntegerField(blank=True, null=True)
+    s_injury = models.IntegerField(blank=True, null=True)
+    l_injury = models.IntegerField(blank=True, null=True)
+    lot = models.FloatField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'frequentzoneoldman_accident'
+
+
+class FrequentzonetmzonAccident(models.Model):
+    id = models.IntegerField(primary_key=True)
+    address = models.TextField(blank=True, null=True)
+    occur = models.IntegerField(blank=True, null=True)
+    death_injury = models.IntegerField(blank=True, null=True)
+    death = models.IntegerField(blank=True, null=True)
+    s_injury = models.IntegerField(blank=True, null=True)
+    l_injury = models.IntegerField(blank=True, null=True)
+    lot = models.FloatField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'frequentzonetmzon_accident'
+
+
+class FrequentzonetmzonKeywordsearch(models.Model):
+    id = models.IntegerField(primary_key=True)
+    year = models.IntegerField(blank=True, null=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    keyword = models.TextField(blank=True, null=True)
+    category = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    center = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'frequentzonetmzon_keywordsearch'
+
+
+class InfCarAcc(models.Model):
+    id = models.IntegerField(primary_key=True)
+    cg = models.TextField(db_column='CG', blank=True, null=True)  # Field name made lowercase.
+    sum = models.IntegerField(blank=True, null=True)
+    ctop = models.IntegerField(db_column='CtoP', blank=True, null=True)  # Field name made lowercase.
+    ctoc = models.IntegerField(db_column='CtoC', blank=True, null=True)  # Field name made lowercase.
+    calone = models.IntegerField(db_column='CAlone', blank=True, null=True)  # Field name made lowercase.
+    year_code = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'inf_car_acc'
+
+
+class InfChildZone(models.Model):
+    id = models.IntegerField(primary_key=True)
+    gugun = models.TextField(blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    sname = models.TextField(blank=True, null=True)
+    stype = models.TextField(blank=True, null=True)
+    year_code = models.IntegerField(blank=True, null=True)
+    sido = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'inf_child_zone'
+
+
+class InfEleDisplay(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    year_code = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'inf_ele_display'
+
+
+class InfPopulation(models.Model):
+    id = models.IntegerField(primary_key=True)
+    year_code = models.IntegerField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    household = models.IntegerField(blank=True, null=True)
+    pop_sum = models.IntegerField(blank=True, null=True)
+    male = models.IntegerField(blank=True, null=True)
+    female = models.IntegerField(blank=True, null=True)
+    sumkor = models.IntegerField(db_column='sumKor', blank=True, null=True)  # Field name made lowercase.
+    korm = models.IntegerField(db_column='korM', blank=True, null=True)  # Field name made lowercase.
+    korf = models.IntegerField(db_column='korF', blank=True, null=True)  # Field name made lowercase.
+    sumfor = models.IntegerField(db_column='sumFor', blank=True, null=True)  # Field name made lowercase.
+    form = models.IntegerField(db_column='forM', blank=True, null=True)  # Field name made lowercase.
+    forf = models.IntegerField(db_column='forF', blank=True, null=True)  # Field name made lowercase.
+    houseperperson = models.FloatField(db_column='HousePerPerson', blank=True, null=True)  # Field name made lowercase.
+    over65 = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'inf_population'
+
+
+class InfSmartCross(models.Model):
+    id = models.IntegerField(primary_key=True)
+    year_code = models.IntegerField(blank=True, null=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'inf_smart_cross'
+
+
+class InfSmartLamp(models.Model):
+    id = models.IntegerField(primary_key=True)
+    gugun = models.TextField(blank=True, null=True)
+    sido = models.TextField(blank=True, null=True)
+    year_code = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'inf_smart_lamp'
+
+
+class InfSpeedBump(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    year_code = models.FloatField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'inf_speed_bump'
+
+
+class InfUnCamera(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    gubun = models.IntegerField(blank=True, null=True)
+    type = models.TextField(db_column='Type', blank=True, null=True)  # Field name made lowercase.
+    year_code = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'inf_un_camera'
+
+
+class InfYellowcarpet(models.Model):
+    id = models.IntegerField(primary_key=True)
+    address = models.TextField(blank=True, null=True)
+    year_code = models.IntegerField(blank=True, null=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'inf_yellowcarpet'
+
+
+class JaywalkingAccident(models.Model):
+    id = models.IntegerField(primary_key=True)
+    address = models.TextField(blank=True, null=True)
+    occur = models.IntegerField(blank=True, null=True)
+    death_injury = models.IntegerField(blank=True, null=True)
+    death = models.IntegerField(blank=True, null=True)
+    s_injury = models.IntegerField(blank=True, null=True)
+    l_injury = models.IntegerField(blank=True, null=True)
+    lot = models.FloatField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'jaywalking_accident'
+
+
+class JaywalkingKeywordsearch(models.Model):
+    id = models.IntegerField(primary_key=True)
+    year = models.IntegerField(blank=True, null=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    keyword = models.TextField(blank=True, null=True)
+    category = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    center = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'jaywalking_keywordsearch'
+
+
+class SchoolzonechildAccident(models.Model):
+    id = models.IntegerField(primary_key=True)
+    address = models.TextField(blank=True, null=True)
+    occur = models.IntegerField(blank=True, null=True)
+    death_injury = models.IntegerField(blank=True, null=True)
+    death = models.IntegerField(blank=True, null=True)
+    s_injury = models.IntegerField(blank=True, null=True)
+    l_injury = models.IntegerField(blank=True, null=True)
+    lot = models.FloatField(blank=True, null=True)
+    lat = models.FloatField(blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'schoolzonechild_accident'
+
+
+class SchoolzonechildKeywordsearch(models.Model):
+    id = models.IntegerField(primary_key=True)
+    year = models.IntegerField(blank=True, null=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    keyword = models.TextField(blank=True, null=True)
+    category = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    center = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'schoolzonechild_keywordsearch'
 
 
 class Year(models.Model):
