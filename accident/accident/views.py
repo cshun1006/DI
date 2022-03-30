@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import *
 from django.http import JsonResponse, HttpResponse
 import requests
+import pandas as pd
+from collections import Counter
 
 def index(request):
     return render(request,'index.html',{'list':InfSpeedBump.objects.all().order_by('-id')})
@@ -386,3 +388,42 @@ def sido_pie(request):
     a = {'a':50000}
     return JsonResponse(tmp_obj)
 
+def keyword(request):
+    return render(request,'keyword.html')
+
+def keyword_data(request):
+    accident_type = request.GET['accident']
+    if accident_type == 'Frequentzoneoldman':
+        area = FrequentzoneoldmanKeywordsearch.objects.all().order_by('category')
+    elif accident_type == 'Frequentzonetmzon':
+        area = FrequentzonetmzonKeywordsearch.objects.all().order_by('category')
+    elif accident_type == 'Frequentzonechild':
+        area = FrequentzonechildKeywordsearch.objects.all().order_by('category')
+    elif accident_type == 'Schoolzonechild':
+        area = SchoolzonechildKeywordsearch.objects.all().order_by('category')
+    elif accident_type == 'Jaywalking':
+        area = JaywalkingKeywordsearch.objects.all().order_by('category')
+
+    key = ['어린이','초등학교','놀이터','키즈카페',
+    '소아과','학원','요양원','경로당',
+    '공원','IC','요금소','버스터미널',
+    '관광지','숙박업소','시장','주차장','술집']
+    json_dict = {}
+    for i in key:
+        new_area = area.filter(keyword=i)
+        test = []
+        for j in new_area:
+            if j.category != 'nan':
+                test.append(j.category)
+            else:
+                continue
+        cate_name = list(Counter(test).keys())
+        cate_num = list(Counter(test).values())
+        key_obj = {'cate_name':cate_name,'cate_num':cate_num}
+        json_dict[i] = key_obj
+    json_dict['key'] = key
+    # print(json_dict)
+    return JsonResponse(json_dict)
+
+def keyword2(request):
+        return render(request,'keyword2.html')
