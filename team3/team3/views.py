@@ -254,7 +254,7 @@ def keyword_data(request):
     json_dict['type'] = accident_type
     test = []
     for i in area:
-        if i.category != 'nan' or i.category[-1] != '만':
+        if i.category != 'nan' and i.category[-1] != '만':
             test.append(i.category)
         else:
             continue
