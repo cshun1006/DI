@@ -165,20 +165,6 @@ class FrequentzonechildKeywordsearch(models.Model):
         managed = False
         db_table = 'frequentzonechild_keywordsearch'
 
-class FrequentzoneoldmanKeywordsearch(models.Model):
-    year = models.IntegerField(blank=True, null=True)
-    sido = models.TextField(blank=True, null=True)
-    gugun = models.TextField(blank=True, null=True)
-    keyword = models.TextField(blank=True, null=True)
-    category = models.TextField(blank=True, null=True)
-    name = models.TextField(blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
-    center = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'frequentzoneoldeman_keywordsearch'
-
 
 class FrequentzonelgAccident(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -213,6 +199,20 @@ class FrequentzoneoldmanAccident(models.Model):
         managed = False
         db_table = 'frequentzoneoldman_accident'
 
+class FrequentzoneoldmanKeywordsearch(models.Model):
+    id = models.IntegerField(primary_key=True)
+    year = models.IntegerField(blank=True, null=True)
+    sido = models.TextField(blank=True, null=True)
+    gugun = models.TextField(blank=True, null=True)
+    keyword = models.TextField(blank=True, null=True)
+    category = models.TextField(blank=True, null=True)
+    name = models.TextField(blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    center = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'frequentzoneoldman_keywordsearch'
 
 class FrequentzonetmzonAccident(models.Model):
     id = models.IntegerField(primary_key=True)
